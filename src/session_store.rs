@@ -8,7 +8,7 @@ pub trait SessionStore {
     /// The input is expected to be the value of an identifying
     /// cookie. This will then be parsed by the session middleware
     /// into a session if possible
-    async fn load_session(&self, cookie_value: String) -> Result<Option<Session>>;
+    async fn load_session(&self, cookie_value: &str) -> Result<Option<Session>>;
 
     /// Store a session on the storage backend.
     ///
