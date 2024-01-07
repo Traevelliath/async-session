@@ -31,7 +31,7 @@ impl CookieStore {
 
 #[async_trait]
 impl SessionStore for CookieStore {
-    async fn load_session(&self, cookie_value: String) -> Result<Option<Session>> {
+    async fn load_session(&self, cookie_value: &str) -> Result<Option<Session>> {
         let serialized = base64::decode(cookie_value)?;
         let session: Session = bincode::deserialize(&serialized)?;
         Ok(session.validate())
