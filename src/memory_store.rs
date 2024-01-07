@@ -33,8 +33,8 @@ pub struct MemoryStore {
 
 #[async_trait]
 impl SessionStore for MemoryStore {
-    async fn load_session(&self, cookie_value: String) -> Result<Option<Session>> {
-        let id = Session::id_from_cookie_value(&cookie_value)?;
+    async fn load_session(&self, cookie_value: &str) -> Result<Option<Session>> {
+        let id = Session::id_from_cookie_value(cookie_value)?;
         log::trace!("loading session by id `{}`", id);
         Ok(self
             .inner
